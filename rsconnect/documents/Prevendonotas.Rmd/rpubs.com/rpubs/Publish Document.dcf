@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/316278/740bc9dd33e14258a19153e903d0b4dd
+bundleId: https://api.rpubs.com/api/v1/document/316278/740bc9dd33e14258a19153e903d0b4dd
+url: http://rpubs.com/viniciuslucenasouza/316278
+when: 1507502889.31455
