@@ -101,6 +101,24 @@ ggplot(dados, aes(y = budget, x = year)) +
 
 
 Nessa abordagem vemos que uma função linear não é a melhor descrição. Vemos o aumento exponencial do orçamento despendidos em filmes.
+Para esses modelos, podemos trazer a abordade de transformação dos dados.
+Se criarmos uma nova variável sendo `log(budget)` aí teríamos uma função representada linearmente. Muito Melhor!!!
+
+Aqui criamos um novo data frame (não é necessário, caso você saiba o que está fazendo, rs)
+
+A função `mutate()` pertence ao pacote dplyr. Se não conhece, aprenda! Ótima ferramenta para transformação e *data handling*
+```{r}
+library("dplyr")
+
+dados2 <- dplyr::mutate(dados, lnbget = log(budget))
+ggplot(dados2, aes(y = lnbget, x = year)) + 
+  geom_point(aes(colour = year)) +
+  geom_smooth(method = "lm")
+```
+
+Aqui vemos a tendência que antes era exponencial, agora é linear. E você achava que logarítmo não servia para nada. Há correlação, e poderíamos até mudar nosso modelo de nossa fórmula, acredito que ficaria melhor ainda. Tente.Basta rodar a funcão `lm()` nos novos dados e com a nova variável no lugar do budget.
+Por hora ficamos por aqui.
+
 
 #### Lembre-se!
 A regressão linear apresentada nos gráficos não é a mesma do nosso modelo, porém é válido vermos a tendência.
@@ -111,6 +129,7 @@ E vale para o primeiro gráfico para o fator beta1 de x1 em um modelo onde não 
 
 Para usar nosso modelo como forme de predição criaremos uma função que poderá ser exportada se necessário.
 A predição é uma entrada simples de dois valores: (year,budget)
+Usaremos o nosso `modelo`, tente com o `modelo2` também!
 
 ```{r}
 funcao_que_preve <- function(orcamento, ano) {
