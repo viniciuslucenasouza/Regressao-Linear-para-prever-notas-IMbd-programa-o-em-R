@@ -160,7 +160,24 @@ ggplot(dados, aes(y = budget, x = year)) +
 
 ![Ano x Orçamento, vemos o aumento exponencial](Prevendonotas_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 
-Nessa abordagem vemos que uma função linear não é a melhor descrição. Vemos o aumento exponencial do orçamento despendidos em filmes.
+Nessa abordagem vemos que uma função linear não é a melhor descrição. Vemos o aumento exponencial do orçamento despendidos em filmes. Para esses modelos, podemos trazer a abordade de transformação dos dados. Se criarmos uma nova variável sendo `log(budget)` aí teríamos uma função representada linearmente. Muito Melhor!!!
+
+Aqui criamos um novo data frame (não é necessário, caso você saiba o que está fazendo, rs)
+
+A função `mutate()` pertence ao pacote dplyr. Se não conhece, aprenda! Ótima ferramenta para transformação e *data handling*
+
+``` r
+library("dplyr")
+
+dados2 <- dplyr::mutate(dados, lnbget = log(budget))
+ggplot(dados2, aes(y = lnbget, x = year)) + 
+  geom_point(aes(colour = year)) +
+  geom_smooth(method = "lm")
+```
+
+![](Prevendonotas_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+
+Aqui vemos a tendência que antes era exponencial, agora é linear. E você achava que logarítmo não servia para nada. Há correlação, e poderíamos até mudar nosso modelo de nossa fórmula, acredito que ficaria melhor ainda. Tente.Basta rodar a funcão `lm()` nos novos dados e com a nova variável no lugar do budget. Por hora ficamos por aqui.
 
 #### Lembre-se!
 
@@ -169,7 +186,7 @@ A regressão linear apresentada nos gráficos não é a mesma do nosso modelo, p
 Prevendo uma Nota
 -----------------
 
-Para usar nosso modelo como forme de predição criaremos uma função que poderá ser exportada se necessário. A predição é uma entrada simples de dois valores: (year,budget)
+Para usar nosso modelo como forme de predição criaremos uma função que poderá ser exportada se necessário. A predição é uma entrada simples de dois valores: (year,budget) Usaremos o nosso `modelo`, tente com o `modelo2` também!
 
 ``` r
 funcao_que_preve <- function(orcamento, ano) {
@@ -199,7 +216,7 @@ ggplot(dados, aes(y = rating, x = budget)) +
   geom_point(x=10000,y=my_rt,colour="red", size=2)
 ```
 
-![O ponto vermelho representa nossa predição](Prevendonotas_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-10-1.png)
+![O ponto vermelho representa nossa predição](Prevendonotas_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-11-1.png)
 
 Pronto. Modelo simples, fácil e ótimo para aprender!!!
 
