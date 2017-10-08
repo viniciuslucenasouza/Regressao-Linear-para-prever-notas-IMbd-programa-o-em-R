@@ -4,3 +4,7 @@ Um simples modelo de predição de notas Imbd através da ferramenta R.
 O objetivo é formalizar a predição de notas imbd através de um banco de dados fornecido pelo pacote `ggplot2movies`.
 
 Nele trabalharemos a exposição das notas e função
+
+Você pode encontrar através do link RPubs:
+
+[RPubs](http://rpubs.com/viniciuslucenasouza/316278)
